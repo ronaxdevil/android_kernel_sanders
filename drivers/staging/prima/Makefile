@@ -19,3 +19,12 @@ CDEFINES += -DMOTO_UTAGS_MAC
 
 # Fix build for GCC 4.7
 EXTRA_CFLAGS += -Wno-unused-function
+
+subdir-ccflags-y += \
+	-Wno-array-bounds \
+	-Wno-empty-body \
+	-Wno-enum-conversion \
+	-Wno-non-literal-null-conversion \
+	-Wno-parentheses-equality \
+	-Wno-pointer-bool-conversion \
+	-Wno-typedef-redefinition
