@@ -61,4 +61,3 @@ struct boost_dev *devfreq_get_boost_dev(enum df_device device)
 #endif
 
 #endif /* _DEVFREQ_BOOST_H_ */
-
