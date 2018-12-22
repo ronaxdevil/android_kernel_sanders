@@ -17,3 +17,5 @@ clean::
 # Moto read MACs from boot params instead of NV file
 CDEFINES += -DMOTO_UTAGS_MAC
 
+# Fix build for GCC 4.7
+EXTRA_CFLAGS += -Wno-unused-function
