@@ -6,7 +6,7 @@
 properties() { '
 kernel.string=// MAYHEM-KERNEL by @Ronax //
 do.devicecheck=1
-do.modules=0
+do.modules=1
 do.cleanup=1
 do.cleanuponabort=0
 device.name1=sanders
@@ -40,7 +40,9 @@ dump_boot;
 # begin ramdisk changes
 
 # insert init.spectrum.rc in init.rc
+# insert init.mayhem.rc in init.rc
 insert_line init.rc "import /init.spectrum.rc" after "import /init.trace.rc" "import /init.spectrum.rc";
+insert_line init.rc "import /init.mayhem.rc" after "import /init.usb.configfs.rc" "import /init.mayhem.rc";
 
 # end ramdisk changes
 
