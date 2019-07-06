@@ -36,6 +36,12 @@ config IOSCHED_MAPLE
 	tristate "Maple I/O scheduler"
 	depends on FB
 
+config IOSCHED_TRIPNDROID
+	tristate "Tripndroid"
+	default y
+	---help---
+	  The Trip N Droid scheduler
+
 config IOSCHED_CFQ
 	tristate "CFQ I/O scheduler"
 	default y
@@ -121,6 +127,9 @@ choice
 	config DEFAULT_MAPLE
 		bool "Maple" if IOSCHED_MAPLE=y
 
+	config DEFAULT_TRIPNDROID
+		bool "TRIPNDROID" if IOSCHED_TRIPNDROID=y
+
 endchoice
 
 config DEFAULT_IOSCHED
@@ -131,6 +140,7 @@ config DEFAULT_IOSCHED
 	default "anxiety" if DEFAULT_ANXIETY
 	default "noop" if DEFAULT_NOOP
 	default "maple" if DEFAULT_MAPLE
+	default "tripndroid" if DEFAULT_TRIPNDROID
 
 endmenu
 
