@@ -51,7 +51,7 @@ make -j$JOBS CC=$CLANG_TOOLCHAIN CLANG_TRIPLE=aarch64-linux-gnu- O=out
 echo -e "$blue***********************************************"
 echo -e "$R          Generating DT image          "
 echo -e "***********************************************$nocol"
-$DTBTOOL/dtbToolCM -2 -o $KERNEL_DIR/out/arch/arm64/boot/dtb -s 2048 -p $KERNEL_DIR/out/scripts/dtc/ $KERNEL_DIR/out/arch/arm64/boot/dts/qcom/
+$DTBTOOL/dtbToolMayhem -o $KERNEL_DIR/out/arch/arm64/boot/dtb -s 2048 -p $KERNEL_DIR/out/scripts/dtc/ $KERNEL_DIR/out/arch/arm64/boot/dts/qcom/
 
 echo -e "$R // Verify Image.gz & dtb //"
 ls $KERNEL_DIR/out/arch/arm64/boot/Image.gz
