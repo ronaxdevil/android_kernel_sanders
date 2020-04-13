@@ -38,6 +38,11 @@
 
 /* Tuneables */
 #define WG_DEBUG		                0
+#define DT2W_DEFAULT		0
+#define SWIPE_RIGHT_DEFAULT		0
+#define SWIPE_LEFT_DEFAULT		0
+#define SWIPE_DOWN_DEFAULT		0
+#define SWIPE_UP_DEFAULT		0
 
 /* Redmi Note 3 */
 #define SWEEP_Y_MAX             1920
@@ -72,8 +77,21 @@
 #define LOGTAG			"WG"
 
 /* Resources */
-int gesture_swipe_right = 0, gesture_swipe_left = 0, gesture_swipe_down = 0, gesture_swipe_up = 0;
-int dt2w_switch = 0;
+int gesture_swipe_right = SWIPE_RIGHT_DEFAULT;
+int gesture_swipe_right_temp;
+bool gesture_swipe_right_changed = false;
+int gesture_swipe_left = SWIPE_LEFT_DEFAULT;
+int gesture_swipe_left_temp;
+bool gesture_swipe_left_changed = false;
+int gesture_swipe_down = SWIPE_DOWN_DEFAULT;
+int gesture_swipe_down_temp;
+bool gesture_swipe_down_changed = false;
+int gesture_swipe_up = SWIPE_UP_DEFAULT;
+int gesture_swipe_up_temp;
+bool gesture_swipe_up_changed = false;
+int dt2w_switch = DT2W_DEFAULT;
+int dt2w_switch_temp;
+bool dt2w_switch_changed = false;
 static int touch_x = 0, touch_y = 0;
 static bool touch_x_called = false, touch_y_called = false;
 static bool exec_countx = true, exec_county = true, exec_count = true;
@@ -466,10 +484,15 @@ static ssize_t doubletap2wake_show(struct device *dev,
 static ssize_t doubletap2wake_dump(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t count)
 {
-	sscanf(buf, "%d ", &dt2w_switch);
-	if (dt2w_switch < 0 || dt2w_switch > 1)
-		dt2w_switch = 0;
-		
+	sscanf(buf, "%d ", &dt2w_switch_temp);
+	if (dt2w_switch_temp < 0 || dt2w_switch_temp > 1)
+		dt2w_switch_temp = 0;
+
+	if (!is_suspended())
+		dt2w_switch = dt2w_switch_temp;
+	else
+		dt2w_switch_changed = true;
+
 	return count;
 }
 
@@ -489,9 +512,14 @@ static ssize_t gesture_swipe_right_show(struct device *dev,
 static ssize_t gesture_swipe_right_dump(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t count)
 {
-	sscanf(buf, "%d ", &gesture_swipe_right);
-	if (gesture_swipe_right < 0 || gesture_swipe_right > 200)
-		gesture_swipe_right = 0;
+	sscanf(buf, "%d ", &gesture_swipe_right_temp);
+	if (gesture_swipe_right_temp < 0 || gesture_swipe_right_temp > 200)
+		gesture_swipe_right_temp = 0;
+
+	if (!is_suspended())
+		gesture_swipe_right = gesture_swipe_right_temp;
+	else
+		gesture_swipe_right_changed = true;
 
 	return count;
 }
@@ -512,9 +540,14 @@ static ssize_t gesture_swipe_left_show(struct device *dev,
 static ssize_t gesture_swipe_left_dump(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t count)
 {
-	sscanf(buf, "%d ", &gesture_swipe_left);
-	if (gesture_swipe_left < 0 || gesture_swipe_left > 200)
-		gesture_swipe_left = 0;
+	sscanf(buf, "%d ", &gesture_swipe_left_temp);
+	if (gesture_swipe_left_temp < 0 || gesture_swipe_left_temp > 200)
+		gesture_swipe_left_temp = 0;
+
+	if (!is_suspended())
+		gesture_swipe_left = gesture_swipe_left_temp;
+	else
+		gesture_swipe_left_changed = true;
 
 	return count;
 }
@@ -535,9 +568,14 @@ static ssize_t gesture_swipe_down_show(struct device *dev,
 static ssize_t gesture_swipe_down_dump(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t count)
 {
-	sscanf(buf, "%d ", &gesture_swipe_down);
-	if (gesture_swipe_down < 0 || gesture_swipe_down > 200)
-		gesture_swipe_down = 0;
+	sscanf(buf, "%d ", &gesture_swipe_down_temp);
+	if (gesture_swipe_down_temp < 0 || gesture_swipe_down_temp > 200)
+		gesture_swipe_down_temp = 0;
+
+	if (!is_suspended())
+		gesture_swipe_down = gesture_swipe_down_temp;
+	else
+		gesture_swipe_down_changed = true;
 
 	return count;
 }
@@ -558,9 +596,14 @@ static ssize_t gesture_swipe_up_show(struct device *dev,
 static ssize_t gesture_swipe_up_dump(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t count)
 {
-	sscanf(buf, "%d ", &gesture_swipe_up);
-	if (gesture_swipe_up < 0 || gesture_swipe_up > 200)
-		gesture_swipe_up = 0;
+	sscanf(buf, "%d ", &gesture_swipe_up_temp);
+	if (gesture_swipe_up_temp < 0 || gesture_swipe_up_temp > 200)
+		gesture_swipe_up_temp = 0;
+
+	if (!is_suspended())
+		gesture_swipe_up = gesture_swipe_up_temp;
+	else
+		gesture_swipe_up_changed = true;
 
 	return count;
 }

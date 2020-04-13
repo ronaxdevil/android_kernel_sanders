@@ -24,10 +24,20 @@
 #include <linux/input.h>
 
 extern int gesture_swipe_right;
+extern int gesture_swipe_right_temp;
+extern bool gesture_swipe_right_changed;
 extern int gesture_swipe_left;
+extern int gesture_swipe_left_temp;
+extern bool gesture_swipe_left_changed;
 extern int gesture_swipe_down;
+extern int gesture_swipe_down_temp;
+extern bool gesture_swipe_down_changed;
 extern int gesture_swipe_up;
+extern int gesture_swipe_up_temp;
+extern bool gesture_swipe_up_changed;
 extern int dt2w_switch;
+extern int dt2w_switch_temp;
+extern bool dt2w_switch_changed;
 bool scr_suspended(void);
 
 #endif	/* _LINUX_SCREEN_OFF_GESTURES_H */
