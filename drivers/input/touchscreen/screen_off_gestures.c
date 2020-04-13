@@ -38,11 +38,6 @@
 
 /* Tuneables */
 #define WG_DEBUG		                0
-#define DT2W_DEFAULT		0
-#define SWIPE_RIGHT_DEFAULT		0
-#define SWIPE_LEFT_DEFAULT		0
-#define SWIPE_DOWN_DEFAULT		0
-#define SWIPE_UP_DEFAULT		0
 
 /* Redmi Note 3 */
 #define SWEEP_Y_MAX             1920
@@ -77,19 +72,19 @@
 #define LOGTAG			"WG"
 
 /* Resources */
-int gesture_swipe_right = SWIPE_RIGHT_DEFAULT;
+int gesture_swipe_right = 0;
 int gesture_swipe_right_temp;
 bool gesture_swipe_right_changed = false;
-int gesture_swipe_left = SWIPE_LEFT_DEFAULT;
+int gesture_swipe_left = 0;
 int gesture_swipe_left_temp;
 bool gesture_swipe_left_changed = false;
-int gesture_swipe_down = SWIPE_DOWN_DEFAULT;
+int gesture_swipe_down = 0;
 int gesture_swipe_down_temp;
 bool gesture_swipe_down_changed = false;
-int gesture_swipe_up = SWIPE_UP_DEFAULT;
+int gesture_swipe_up = 0;
 int gesture_swipe_up_temp;
 bool gesture_swipe_up_changed = false;
-int dt2w_switch = DT2W_DEFAULT;
+int dt2w_switch = 0;
 int dt2w_switch_temp;
 bool dt2w_switch_changed = false;
 static int touch_x = 0, touch_y = 0;
