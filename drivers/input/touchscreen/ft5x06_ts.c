@@ -437,7 +437,7 @@ struct ft5x06_ts_data {
 #ifdef CONFIG_SCREEN_OFF_GESTURES
 struct ft5x06_ts_data *ft5x06_ts = NULL;
 
-bool scr_suspended_ft(void) {
+bool scr_suspended(void) {
 	return ft5x06_ts->suspended;
 }
 #endif
