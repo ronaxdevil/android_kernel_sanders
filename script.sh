@@ -13,8 +13,8 @@ DTBTOOL=$KERNEL_DIR/Dtbtool/
 JOBS=4
 ZIP_DIR=$KERNEL_DIR/zip/
 KERNEL=MAYHEM-KERNEL
-TYPE=HMP
-RELEASE=Parallax-ultimate
+TYPE=HMP-10
+RELEASE=Parallax-minimal
 FINAL_KERNEL_ZIP=$KERNEL-$TYPE-$RELEASE-$DATE_POSTFIX.zip
 # Speed up build process
 MAKE="./makeparallel"
@@ -69,7 +69,7 @@ cp $KERNEL_DIR/out/arch/arm64/boot/Image.gz $ZIP_DIR/
 echo "**** Copying dtb ****"
 cp $KERNEL_DIR/out/arch/arm64/boot/dtb $ZIP_DIR/
 echo "**** Copying modules ****"
-mkdir -p zip/modules/vendor/lib/modules
+mkdir -p $ZIP_DIR/modules/vendor/lib/modules
 [ -e "$KERNEL_DIR/out/drivers/char/rdbg.ko" ] && cp $KERNEL_DIR/out/drivers/char/rdbg.ko $ZIP_DIR/modules/vendor/lib/modules || echo "module not found"
 [ -e "$KERNEL_DIR/out/drivers/media/usb/gspca/gspca_main.ko" ] && cp $KERNEL_DIR/out/drivers/media/usb/gspca/gspca_main.ko $ZIP_DIR/modules/vendor/lib/modules || echo "module not found..."
 [ -e "$KERNEL_DIR/out/drivers/misc/moto-dtv-fc8300/isdbt.ko" ] && cp $KERNEL_DIR/out/drivers/misc/moto-dtv-fc8300/isdbt.ko $ZIP_DIR/modules/vendor/lib/modules || echo "module not found..."
@@ -87,17 +87,17 @@ mkdir -p zip/modules/vendor/lib/modules
 echo "**** Time to zip up! ****"
 cd $ZIP_DIR/
 zip -r9 $FINAL_KERNEL_ZIP * -x README $FINAL_KERNEL_ZIP
-cp $KERNEL_DIR/zip/$FINAL_KERNEL_ZIP $KERNEL_DIR/../../$FINAL_KERNEL_ZIP
+cp $ZIP_DIR/$FINAL_KERNEL_ZIP $KERNEL_DIR/../../$FINAL_KERNEL_ZIP
 
 echo -e "$yellow // Build Successfull  //"
 cd $KERNEL_DIR
 rm -rf arch/arm64/boot/dtb
 rm -rf $ZIP_DIR/$FINAL_KERNEL_ZIP
-rm -rf zip/Image.gz
-rm -rf zip/dtb
-rm -rf zip/modules/vendor/lib/modules/*.ko
+rm -rf $ZIP_DIR/Image.gz
+rm -rf $ZIP_DIR/dtb
+rm -rf $ZIP_DIR/modules/vendor/lib/modules/*.ko
 rm -rf $KERNEL_DIR/out/
-rm -rf zip/modules/vendor/lib/modules
+rm -rf $ZIP_DIR/modules/vendor
 
 BUILD_END=$(date +"%s")
 DIFF=$(($BUILD_END - $BUILD_START))
