@@ -61,6 +61,7 @@
 #include <linux/atomic.h>
 #include <linux/binfmts.h>
 #include <linux/cpu_boost.h>
+#include <linux/cpu_input_boost.h>
 
 /*
  * pidlists linger the following amount before being destroyed.  The goal
@@ -2432,6 +2433,7 @@ retry_find_task:
 	    !strcmp(of->kn->parent->name, "top-app") &&
 	    is_zygote_pid(tsk->parent->pid))
 		do_input_boost_max();
+		cpu_input_boost_kick_max(1000);
 	threadgroup_unlock(tsk);
 
 	put_task_struct(tsk);
