@@ -14,7 +14,7 @@ JOBS=4
 ZIP_DIR=$KERNEL_DIR/zip/
 KERNEL=MAYHEM-KERNEL
 TYPE=HMP-10
-RELEASE=Parallax-minimal
+RELEASE=Parallax-plus
 FINAL_KERNEL_ZIP=$KERNEL-$TYPE-$RELEASE-$DATE_POSTFIX.zip
 # Speed up build process
 MAKE="./makeparallel"
