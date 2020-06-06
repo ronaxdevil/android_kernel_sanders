@@ -12,9 +12,9 @@ KERNEL_DEFCONFIG=sanders_defconfig
 DTBTOOL=$KERNEL_DIR/Dtbtool/
 JOBS=4
 ZIP_DIR=$KERNEL_DIR/zip/
-KERNEL=MOTO-STOCK-KERNEL
+KERNEL=Mayhem-KERNEL
 TYPE=HMP
-RELEASE=android-10-release-qpk30.54
+RELEASE=Parallax-plus-1.3
 FINAL_KERNEL_ZIP=$KERNEL-$TYPE-$RELEASE-$DATE_POSTFIX.zip
 # Speed up build process
 MAKE="./makeparallel"
