@@ -7,7 +7,7 @@ DATE_POSTFIX=$(date +"%Y%m%d")
 ## Copy this script inside the kernel directory
 KERNEL_DIR=$PWD
 KERNEL_TOOLCHAIN=$PWD/../../prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
-# CLANG_TOOLCHAIN=$PWD/../../prebuilts-master/clang/host/linux-x86/clang-5900059/bin/clang-9
+CLANG_TOOLCHAIN=$PWD/../../prebuilts-master/clang/host/linux-x86/clang-6364210/bin/clang-10
 KERNEL_DEFCONFIG=sanders_defconfig
 DTBTOOL=$KERNEL_DIR/Dtbtool/
 JOBS=4
@@ -40,13 +40,13 @@ make clean && make mrproper && rm -rf out/
 
 echo -e "$cyan // defconfig is set to $KERNEL_DEFCONFIG //"
 echo -e "$blue***********************************************"
-echo -e "$R          BUILDING STOCK-KERNEL          "
+echo -e "$R          BUILDING Mayhem-KERNEL          "
 echo -e "***********************************************$nocol"
 echo -e "$blue***********************************************"
-echo -e "$R        android-10-release-qpk30.54                 "
+echo -e "$R       ++++++||parallax plus||++++++                 "
 echo -e "***********************************************$nocol"
 make $KERNEL_DEFCONFIG O=out
-make -j$JOBS O=out
+make -j$JOBS CC=$CLANG_TOOLCHAIN CLANG_TRIPLE=aarch64-linux-gnu- O=out
 
 echo -e "$blue***********************************************"
 echo -e "$R          Generating DT image          "
