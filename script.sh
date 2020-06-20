@@ -70,7 +70,7 @@ echo "**** Copying dtb ****"
 cp $KERNEL_DIR/out/arch/arm64/boot/dtb $ZIP_DIR/
 echo "**** Copying modules ****"
 mkdir -p $ZIP_DIR/modules/vendor/lib/modules
-[ -e "$KERNEL_DIR/out/drivers/char/rdbg.ko" ] && cp $KERNEL_DIR/out/drivers/char/rdbg.ko $ZIP_DIR/modules/vendor/lib/modules || echo "module not found"
+[ -e "$KERNEL_DIR/out/drivers/char/rdbg.ko" ] && cp $KERNEL_DIR/out/drivers/char/rdbg.ko $ZIP_DIR/modules/vendor/lib/modules || echo "module not found..."
 [ -e "$KERNEL_DIR/out/drivers/media/usb/gspca/gspca_main.ko" ] && cp $KERNEL_DIR/out/drivers/media/usb/gspca/gspca_main.ko $ZIP_DIR/modules/vendor/lib/modules || echo "module not found..."
 [ -e "$KERNEL_DIR/out/drivers/misc/moto-dtv-fc8300/isdbt.ko" ] && cp $KERNEL_DIR/out/drivers/misc/moto-dtv-fc8300/isdbt.ko $ZIP_DIR/modules/vendor/lib/modules || echo "module not found..."
 [ -e "$KERNEL_DIR/out/drivers/spi/spidev.ko" ] && cp $KERNEL_DIR/out/drivers/spi/spidev.ko $ZIP_DIR/modules/vendor/lib/modules || echo "module not found..."
@@ -91,7 +91,7 @@ cp $ZIP_DIR/$FINAL_KERNEL_ZIP $KERNEL_DIR/../../$FINAL_KERNEL_ZIP
 
 echo -e "$yellow // Build Successfull  //"
 cd $KERNEL_DIR
-rm -rf arch/arm64/boot/dtb
+rm -rf out/arch/arm64/boot/dtb
 rm -rf $ZIP_DIR/$FINAL_KERNEL_ZIP
 rm -rf $ZIP_DIR/Image.gz
 rm -rf $ZIP_DIR/dtb
@@ -102,3 +102,4 @@ rm -rf $ZIP_DIR/modules/vendor
 BUILD_END=$(date +"%s")
 DIFF=$(($BUILD_END - $BUILD_START))
 echo -e "$yellow Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds.$nocol"
+ls $KERNEL_DIR/../../$FINAL_KERNEL_ZIP
