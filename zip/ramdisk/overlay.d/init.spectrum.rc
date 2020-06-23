@@ -70,6 +70,15 @@ on property:persist.spectrum.profile=0
     # I/O Scheduler
     write /sys/block/mmcblk0/queue/read_ahead_kb 1024
     write /sys/block/mmcblk0/queue/scheduler "cfq"
+    # cpu core
+    write /sys/devices/system/cpu/cpu0/online 1
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/devices/system/cpu/cpu4/online 1
+    write /sys/devices/system/cpu/cpu5/online 1
+    write /sys/devices/system/cpu/cpu6/online 1
+    write /sys/devices/system/cpu/cpu7/online 1
 
 # Performance
 on property:persist.spectrum.profile=1
@@ -78,7 +87,7 @@ on property:persist.spectrum.profile=1
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 1036800
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 2016000
     write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay "20000 1843200:40000"
-    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 45
+    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 50
     write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 20000
     write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1843200
     write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 0
@@ -95,6 +104,15 @@ on property:persist.spectrum.profile=1
     # I/O Scheduler
     write /sys/block/mmcblk0/queue/read_ahead_kb 2048
     write /sys/block/mmcblk0/queue/scheduler "deadline"
+    # cpu core
+    write /sys/devices/system/cpu/cpu0/online 1
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/devices/system/cpu/cpu4/online 1
+    write /sys/devices/system/cpu/cpu5/online 1
+    write /sys/devices/system/cpu/cpu6/online 1
+    write /sys/devices/system/cpu/cpu7/online 1
 
 # Battery
 on property:persist.spectrum.profile=2
@@ -120,6 +138,9 @@ on property:persist.spectrum.profile=2
     # I/O Scheduler
     write /sys/block/mmcblk0/queue/read_ahead_kb 128
     write /sys/block/mmcblk0/queue/scheduler "noop"
+    #cpu core 
+    write /sys/devices/system/cpu/cpu6/online 1
+    write /sys/devices/system/cpu/cpu7/online 1
 
 # Gaming
 on property:persist.spectrum.profile=3
@@ -139,3 +160,36 @@ on property:persist.spectrum.profile=3
     # I/O Scheduler
     write /sys/block/mmcblk0/queue/read_ahead_kb 4096
     write /sys/block/mmcblk0/queue/scheduler "deadline"
+    # cpu core
+    write /sys/devices/system/cpu/cpu0/online 1
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/devices/system/cpu/cpu4/online 1
+    write /sys/devices/system/cpu/cpu5/online 1
+    write /sys/devices/system/cpu/cpu6/online 1
+    write /sys/devices/system/cpu/cpu7/online 1
+
+# Ultra-Battery
+on property:persist.spectrum.profile=4
+    # CPU
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "powersave"
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 652800
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1401600
+    write /sys/module/msm_performance/parameters/touchboost 0
+    write /sys/module/workqueue/parameters/power_efficient Y
+
+    # GPU
+    write /sys/devices/soc/1c00000.qcom,kgsl-3d0/devfreq/1c00000.qcom,kgsl-3d0/governor "powersave"
+    write /sys/devices/soc/1c00000.qcom,kgsl-3d0/devfreq/1c00000.qcom,kgsl-3d0/min_freq 133000000
+    write /sys/devices/soc/1c00000.qcom,kgsl-3d0/devfreq/1c00000.qcom,kgsl-3d0/max_freq 510000000
+    write /sys/class/kgsl/kgsl-3d0/max_gpuclk 510000000
+
+    # I/O Scheduler
+    write /sys/block/mmcblk0/queue/read_ahead_kb 128
+    write /sys/block/mmcblk0/queue/scheduler "anxiety"
+
+    # core control
+    write /sys/devices/system/cpu/cpu7/online 0
+    write /sys/devices/system/cpu/cpu6/online 0
+
