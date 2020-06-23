@@ -1,0 +1,20 @@
+• Uses Deen's 10 QPK kernel base by Motorola
+• Kernel upstream to "LA.UM.8.6.r1-04400-89xx.0" caf tag
+• Prima driver updated to "LA.UM.8.6.r1-04400-89xx.0" caf tag
+• Added some commits left out during CAF's 3.18 stable merge
+• Merge some missing upstream changes up to 3.18.124
+• Added support to st_ism330dlc sensor
+• Remove redundant wake_gestures nodes And deprecated screen off gestures
+• Wireguard Upstream to v1.0.20200611
+• Build with clang 11.0.3
+• AnyKernel zip tools updated
+• Added support for systemless magisk module (Dtv and other modules can be enable/disable by magisk module manager now)
+• Fix dtb installation (No need to flash .img file to get oc now)
+• Fix ramdisk and dtb patch for sar magisk (No need to flash magisk again)
+• Fixed and improve ideal drain 
+• Oc kernel undervolt by 50mv to maintain balance between performance battery and cpu temperature
+• Move to caf-cpu boost from cpu_input_boost driver
+• Remove devfreq wake_boost module ( Our kernel is better without it)
+• Move to f2fs_legacy from f2fs filesystem
+• Other optimization added and Fixed most of the build warning
+• Previous bug fixes and improvements

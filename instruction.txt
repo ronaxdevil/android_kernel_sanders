@@ -1,0 +1,7 @@
+• Flash the latest zip file from twrp, that's it....
+
+• No need to flash any oc kernel .img file before flashing this
+
+• Magisk zip reflash not necessary
+
+• Enjoy new kernel
