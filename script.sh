@@ -51,23 +51,23 @@ make -j$JOBS CC=$CLANG_TOOLCHAIN CLANG_TRIPLE=aarch64-linux-gnu- O=out
 echo -e "$blue***********************************************"
 echo -e "$R          Generating DT image          "
 echo -e "***********************************************$nocol"
-$DTBTOOL/dtbToolMayhem -o $KERNEL_DIR/out/arch/arm64/boot/dtb -s 2048 -p $KERNEL_DIR/out/scripts/dtc/ $KERNEL_DIR/out/arch/arm64/boot/dts/qcom/
+$DTBTOOL/dtbToolMayhem -o $KERNEL_DIR/out/arch/arm64/boot/dt -s 2048 -p $KERNEL_DIR/out/scripts/dtc/ $KERNEL_DIR/out/arch/arm64/boot/dts/qcom/
 
 echo -e "$R // Verify Image.gz & dtb //"
 ls $KERNEL_DIR/out/arch/arm64/boot/Image.gz
-ls $KERNEL_DIR/out/arch/arm64/boot/dtb
+ls $KERNEL_DIR/out/arch/arm64/boot/dt
 
 echo -e "$R // Verifying zip Directory //"
 ls $ZIP_DIR
 echo "// Removing leftovers //"
-rm -rf $ZIP_DIR/dtb
+rm -rf $ZIP_DIR/dt
 rm -rf $ZIP_DIR/Image.gz
 rm -rf $ZIP_DIR/$FINAL_KERNEL_ZIP
 
 echo "**** Copying Image.gz ****"
 cp $KERNEL_DIR/out/arch/arm64/boot/Image.gz $ZIP_DIR/
 echo "**** Copying dtb ****"
-cp $KERNEL_DIR/out/arch/arm64/boot/dtb $ZIP_DIR/
+cp $KERNEL_DIR/out/arch/arm64/boot/dt $ZIP_DIR/
 echo "**** Copying modules ****"
 mkdir -p $ZIP_DIR/modules/vendor/lib/modules
 [ -e "$KERNEL_DIR/out/drivers/char/rdbg.ko" ] && cp $KERNEL_DIR/out/drivers/char/rdbg.ko $ZIP_DIR/modules/vendor/lib/modules || echo "module not found..."
@@ -91,10 +91,10 @@ cp $ZIP_DIR/$FINAL_KERNEL_ZIP $KERNEL_DIR/../../$FINAL_KERNEL_ZIP
 
 echo -e "$yellow // Build Successfull  //"
 cd $KERNEL_DIR
-rm -rf out/arch/arm64/boot/dtb
+rm -rf out/arch/arm64/boot/dt
 rm -rf $ZIP_DIR/$FINAL_KERNEL_ZIP
 rm -rf $ZIP_DIR/Image.gz
-rm -rf $ZIP_DIR/dtb
+rm -rf $ZIP_DIR/dt
 rm -rf $ZIP_DIR/modules/vendor/lib/modules/*.ko
 rm -rf $KERNEL_DIR/out/
 rm -rf $ZIP_DIR/modules/vendor
