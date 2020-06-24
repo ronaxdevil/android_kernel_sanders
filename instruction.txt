@@ -4,4 +4,6 @@
 
 • Magisk zip reflash not necessary
 
+• For oc kernel if ur rom has prebuilt spectrum support then you can remove /vendor/etc/init/hw/init.spectrum.rc to make spctrum changes for oc kernel to takes effect.
+
 • Enjoy new kernel
